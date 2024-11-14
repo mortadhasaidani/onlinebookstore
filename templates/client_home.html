@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Categories</h4>
+                <ul class="list-group">
+                    {% for category in categories %}
+                        <li class="list-group-item">
+                            <a href="{{ url_for('client_home', cat_id=category[0]) }}"  style="text-decoration: none; color: inherit;">
+                                {{ category[1] }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-md-9">
+                <h4>Books</h4>
+                <div class="row">
+                    {% for book in books %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="{{ url_for('book_details', book_id=book[0]) }}">
+                                    <img src="/static/images/books/{{ book[4] }}" class="card-img-top"src="/static/images/books/{{ book[4] }}" alt="{{ book[1] }}">
+                                </a>
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{ book[1] }}</h5>
+{#                                    <p class="card-text">Author: {{ book['author'] }}</p>#}
+                                    <p class="card-text"><small>Category: {{ dic[book[3]] }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

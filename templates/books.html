@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+ <div class="container mt-4">
+    <a href="{{ url_for('add_books') }}" class="btn btn-primary mb-3">Add Book</a>
+        <h1>Books List</h1>
+<ul class="list-group">
+    {% for book in books %}
+        <li class="list-group-item">
+            <strong>{{ book[1] }}</strong><br>
+            <em>{{ book[2] }}</em><br>
+            <small>Category: {{ categories[book[3]] }}</small><br>
+            <img src="/static/images/books/{{ book[4] }}" alt="{{ book[1] }}" class="img-thumbnail" width="50%"><br>
+
+            <!-- Edit Button -->
+            <a href="{{ url_for('edit_book', book_id=book[0]) }}" class="btn btn-warning btn-sm">Edit</a>
+
+            <!-- Delete Button -->
+            <a href="{{ url_for('delete_book', book_id=book[0]) }}" class="btn btn-danger btn-sm">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if category %}
+        <h1>Update a Category</h1>
+    {% else %}
+    <h1>Add a New Category</h1>
+    {% endif %}
+
+<form method="POST" action="/add-category">
+        <input type="hidden" name="category_id" value="{{ category[0][0] if category else ''}}">
+    <div class="mb-3">
+        <label for="category_name" class="form-label">Category Name</label>
+        <input type="text" class="form-control" id="category_name" name="category_name" value="{{ category[0][1] if category else ''}}">
+    </div>
+        <div class="mb-3">
+            <label for="categoryDescription" class="form-label">Category Description</label>
+            <textarea class="form-control" id="categoryDescription" name="categoryDescription" rows="4" placeholder="Enter category description" >{{ category[0][2] if category else '' }}</textarea>
+        </div>
+{% if category %}
+    <button type="submit" class="btn btn-success">udpate</button>
+{% else %}
+<button type="submit" class="btn btn-success">Add</button>
+{% endif %}
+</form>
+{% endblock %}

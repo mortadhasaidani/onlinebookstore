@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card mb-4">
+            <img src="/static/images/books/{{ book[0][4] }}" class="card-img-top" alt="{{ book[0][1] }}">
+            <div class="card-body">
+                <h3 class="card-title">{{ book[0][1] }}</h3>
+                <p class="card-text"><strong>Category:</strong> {{ category[0][1] }}</p>
+                <p class="card-text"><strong>Description:</strong> {{ book[0][2] }}</p>
+            </div>
+        </div>
+        <a href="{{ url_for('client_home', cat_id=0) }}" class="btn btn-primary">Back to Home</a>
+    </div>
+{% endblock %}

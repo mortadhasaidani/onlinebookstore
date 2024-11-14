@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Book Categories</h1>
+<a href="{{ url_for('add_category') }}" class="btn btn-primary mb-3">Add Category</a>
+<ul class="list-group">
+    {% for category in categories %}
+    <li class="list-group-item">
+        <h5>{{ category[1] }}</h5>
+
+        <p>{{ category[2] }}</p>
+
+        <div class="d-flex justify-content-end">
+            <!-- Edit Button (Link or route to the edit page) -->
+            <a href="{{ url_for('edit_category', cat_id=category[0]) }}" class="btn btn-warning btn-sm mr-2">Edit</a>
+
+            <!-- Delete Button (Link to delete category) -->
+            <a href="{{ url_for('delete_category', cat_id=category[0]) }}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+    </li>
+{% else %}
+    <p>No categories available. Add some!</p>
+{% endfor %}
+
+</ul>
+{% endblock %}
+

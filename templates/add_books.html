@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+    {% if book %}
+        <h1>Update Book</h1>
+    {% else %}
+        <h1>Add New Book</h1>
+    {% endif %}
+        <form method="POST" action="/add-book" enctype=multipart/form-data>
+        <input type="hidden" value="{{ book[0][0] if book else '' }}" id="book_id" name="book_id">
+            <div class="mb-3">
+                <label for="book_name" class="form-label">Book Name</label>
+                <input type="text" class="form-control" id="book_name" name="book_name" required value="{{ book[0][1] if book else '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="book_description" class="form-label">Description</label>
+                <textarea class="form-control" id="book_description" name="book_description" rows="4" required>{{ book[0][2] if book else '' }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="book_number" class="form-label">number</label>
+                <input type="text" class="form-control" id="book_number" name="book_number" required value="{{ book[0][5] if book else '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-select" id="category_id" name="category_id" required>
+                    <option value="{{ book[0][3] if book else '' }}" selected></option>
+                    {% for category in categories %}
+                        <option value="{{ category[0] }}">{{ category[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="book_image" class="form-label">Image URL</label>
+                <input type="file" class="form-control" id="book_image" name="book_image">
+            </div>
+        {% if book %}
+            <button type="submit" class="btn btn-success">update Book</button>
+        {% else %}
+            <button type="submit" class="btn btn-success">Add Book</button>
+        {% endif %}
+        </form>
+    </div>
+{% endblock %}
