@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Manage comments</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+
+        <tr>
+            <th>Username</th>
+            <th>Book Name</th>
+            <th>commentaire</th>
+        </tr>
+        </thead>
+        {% for comment in comments %}
+        <tbody>
+        <tr>
+            <td>{{ names[loop.index - 1] }}</td>
+            <td>{{ books[loop.index - 1]}}</td>
+            <td>{{ comment[3]}}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}

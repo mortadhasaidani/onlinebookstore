@@ -15,11 +15,20 @@
             </div>
             <div class="mb-3">
                 <label for="book_description" class="form-label">Description</label>
-                <textarea class="form-control" id="book_description" name="book_description" rows="4" required>{{ book[0][2] if book else '' }}</textarea>
+                <textarea class="form-control" id="book_description" name="book_description" rows="4" >{{ book[0][2] if book else '' }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="book_number" class="form-label">number</label>
-                <input type="text" class="form-control" id="book_number" name="book_number" required value="{{ book[0][5] if book else '' }}">
+                <input type="text" class="form-control" id="book_number" name="book_number" value="{{ book[0][5] if book else '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="book_author" class="form-label">author</label>
+                <input type="text" class="form-control" id="book_author" name="book_author" value="{{ book[0][7] if book else '' }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="book_price" class="form-label">price</label>
+                <input type="text" class="form-control" id="book_price" name="book_price" value="{{ book[0][6] if book else '' }}">
             </div>
             <div class="mb-3">
                 <label for="category_id" class="form-label">Category</label>

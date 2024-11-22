@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Manage Book Requests</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Book Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        {% for commande in commandes %}
+        <tbody>
+        <tr>
+
+            <td>{{ names[loop.index - 1] }}</td>
+            <td>{{ prenoms[loop.index - 1]}}</td>
+            <td>{{ books[loop.index - 1]}}</td>
+            <td>
+                {% if commande[3] ==  0%}
+                    <a href="/approve_requests/1/{{commande[0]}}" class="btn btn-success btn-sm">Approve</a>
+                    <a href="/approve_requests/2/{{commande[0]}}" class="btn btn-danger btn-sm">Reject</a>
+                {% else %}
+                <button disabled class="btn {{ "btn-success" if commande[3] == 1 else "btn-danger"}}  btn-sm">{{ "ACCEPTED" if commande[3] == 1 else "REJECTED" }}</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}

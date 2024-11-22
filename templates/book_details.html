@@ -1,15 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <a href="{{ url_for('client_home', cat_id=0) }}" class="btn btn-primary">Back to Home</a>
     <div class="container mt-4">
         <div class="card mb-4">
-            <img src="/static/images/books/{{ book[0][4] }}" class="card-img-top" alt="{{ book[0][1] }}">
+            <img src="/static/images/books/{{ book[0][4] }}" class="card-img-top" alt="{{ book[0][1] }}" style="height:50%;width:50%">
             <div class="card-body">
                 <h3 class="card-title">{{ book[0][1] }}</h3>
                 <p class="card-text"><strong>Category:</strong> {{ category[0][1] }}</p>
                 <p class="card-text"><strong>Description:</strong> {{ book[0][2] }}</p>
+                <p class="card-text"><strong>author:</strong> {{ book[0][7] }}</p>
+                <p class="card-text"><strong>price:</strong> {{ book[0][6] }}</p>
+                <a href="{{ url_for('by_book', book_id=book[0][0]) }}" class="btn btn-primary">by this book</a>
             </div>
         </div>
-        <a href="{{ url_for('client_home', cat_id=0) }}" class="btn btn-primary">Back to Home</a>
+
+        <h3 class="mt-4">Comments</h3>
+        <ul class="list-group mb-3">
+            {% for comment in comments %}
+                <li class="list-group-item">
+                    <p>{{ comment[3] }}</p>
+                </li>
+            {% else %}
+                <li class="list-group-item">No comments yet. Be the first to comment!</li>
+            {% endfor %}
+        </ul>
+
+        <h4>Add a New Comment</h4>
+        <form method="POST" action="/submit_comment/{{ book[0][0] }}">
+            <div class="mb-3">
+                <textarea class="form-control" name="comment" rows="3" placeholder="Enter your comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+
+
     </div>
 {% endblock %}
